@@ -69,6 +69,7 @@ const float cubeVertices[] = {
 	 0.0f, 1.0f, 1.0f,
 };
 
+
 Mesh* ChunkMeshBuilder::BuildChunkMesh(int chunkBlocks[CHUNK_SIZE*CHUNK_SIZE*CHUNK_SIZE])
 {
 	Mesh* mesh = new Mesh();
@@ -78,12 +79,22 @@ Mesh* ChunkMeshBuilder::BuildChunkMesh(int chunkBlocks[CHUNK_SIZE*CHUNK_SIZE*CHU
 		{
 			for (int w = 0; w < CHUNK_SIZE; w++)
 			{
-				if (chunkBlocks[i*CHUNK_SIZE*CHUNK_SIZE +j*CHUNK_SIZE + w] != AIR_BLOCK)
+				int blockType = chunkBlocks[i*CHUNK_SIZE*CHUNK_SIZE + j*CHUNK_SIZE + w];
+				if (blockType != AIR_BLOCK)
 				{
 					glm::vec3 cubePos = { i, j, w };
 					std::vector<int> adjacentBlocktypes = GetAdjacentBlockTypes(cubePos, chunkBlocks);
-					int blockType = chunkBlocks[i*CHUNK_SIZE*CHUNK_SIZE + j*CHUNK_SIZE + w];
-					AddCube(mesh, cubePos, blockType, adjacentBlocktypes);
+
+					// Don't both adding cube if surrounded by solid blocks
+					bool blockSurrounded = true;
+					for (int i = 0; i < 6; i++)
+					{
+						blockSurrounded = blockSurrounded && adjacentBlocktypes[i] != AIR_BLOCK;
+					}
+					if (!blockSurrounded)
+					{
+						AddCube(mesh, cubePos, blockType, adjacentBlocktypes);
+					}
 				}
 			}
 		}
