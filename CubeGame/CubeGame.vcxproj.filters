@@ -16,95 +16,158 @@
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{b0f276f1-2835-47fe-826d-fbaa97f90d58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\World">
+      <UniqueIdentifier>{7d50651a-e6f4-4c4c-8760-f4d4a5295101}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Texture">
+      <UniqueIdentifier>{0d6dbecc-593e-4cdd-84e9-8d514989c52f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Maths">
+      <UniqueIdentifier>{1e89ad74-aad0-4d27-9982-d8de4dbc32e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Util">
+      <UniqueIdentifier>{6a06b6ca-a8a0-438e-b3bd-b1abfd17c0c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\World\Chunk">
+      <UniqueIdentifier>{9005cb90-3f7e-4131-8005-66b93ee4872f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\World\Terrain">
+      <UniqueIdentifier>{261b867c-95ee-4e93-908b-fef8b9f4c2c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Maths">
+      <UniqueIdentifier>{2902ae7d-c603-4f49-af77-f7deefbabbae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{1ba4b2ca-8c89-44f3-bee9-1d31389ba915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Texture">
+      <UniqueIdentifier>{6ec4b5e3-36b5-4287-b6fb-6d536e4c6db8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\World">
+      <UniqueIdentifier>{a40fa79e-5a66-4d6d-b191-1d57331b4735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\World\Chunk">
+      <UniqueIdentifier>{8943faef-5eec-4c52-ae7b-6181c9ca4d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\World\Terrain">
+      <UniqueIdentifier>{d8e3d920-a3ad-4f20-a06e-3488813fb77f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Startup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\OpenGL\Includes\glad\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Chunk.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ChunkeRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ChunkMeshBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TerrainGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <None Include="Resources\Shaders\Chunk.fs">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Chunk.vs">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\OpenGL\Includes\glad\glad.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
+    <ClInclude Include="Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Chunk.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ChunkRenderer.h">
+    <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChunkMeshBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Application.h">
+    <ClInclude Include="Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TerrainGenerator.h">
+    <ClInclude Include="World\Chunk\Chunk.h">
+      <Filter>Header Files\World\Chunk</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Chunk\ChunkRenderer.h">
+      <Filter>Header Files\World\Chunk</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Chunk\ChunkMeshBuilder.h">
+      <Filter>Header Files\World\Chunk</Filter>
+    </ClInclude>
+    <ClInclude Include="Maths\PerlinNoise.h">
+      <Filter>Header Files\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Terrain\TerrainGenerator.h">
+      <Filter>Header Files\World\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture\TextureAtlas.h">
+      <Filter>Header Files\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture\Texture.h">
+      <Filter>Header Files\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Constants.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="World\WorldController.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\GLUtil.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\OpenGL\Includes\glad\glad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Shaders\Cube.fs">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Resources\Shaders\Cube.vs">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
+    <ClCompile Include="Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Chunk\Chunk.cpp">
+      <Filter>Source Files\World\Chunk</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Chunk\ChunkRenderer.cpp">
+      <Filter>Source Files\World\Chunk</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Chunk\ChunkMeshBuilder.cpp">
+      <Filter>Source Files\World\Chunk</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\GLUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Maths\PerlinNoise.cpp">
+      <Filter>Source Files\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture\TextureAtlas.cpp">
+      <Filter>Source Files\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture\Texture.cpp">
+      <Filter>Source Files\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Terrain\TerrainGenerator.cpp">
+      <Filter>Source Files\World\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="World\WorldController.cpp">
+      <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\OpenGL\Includes\glad\glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

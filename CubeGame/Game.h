@@ -2,6 +2,10 @@
 
 #include "Camera.h"
 #include <GLFW/glfw3.h>
+#include <mutex>
+#include <atomic>
+#include <thread>
+
 
 class Game
 {
@@ -13,7 +17,7 @@ public:
 	void Init();
 
 	// Main game loop functions
-	void Update(float deltaTime);
+	void Update();
 	void Render();
 	void ProcessInput(float deltaTime);
 
@@ -23,4 +27,7 @@ public:
 private:
 	Camera* camera;
 	GLFWwindow* window;
+
+	std::atomic<bool> gameRunning { true };
+	std::vector<std::thread> chunkLoadThreads;
 };

@@ -7,10 +7,9 @@
 class Model
 {
 public:
-	Model() = default;
-	Model(Mesh& mesh);
+	Model();
 	~Model();
-	void addData(Mesh& mesh);
+	void bindData(Mesh& mesh);
 	void bindVAO();
 	void deleteData();
 	void addVBO(int dimensions, std::vector<float> data);

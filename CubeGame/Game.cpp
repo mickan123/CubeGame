@@ -1,12 +1,18 @@
 #include "Game.h"
 #include "ResourceManager.h"
-#include "Cube.h"
-#include "ChunkMeshBuilder.h"
-#include "ChunkRenderer.h"
-#include "Chunk.h"
+#include "World/Chunk/ChunkMeshBuilder.h"
+#include "World/Chunk/ChunkRenderer.h"
+#include "World/Chunk/Chunk.h"
+#include "World/Terrain/TerrainGenerator.h"
+#include "World/WorldController.h"
+#include "Util/GLUtil.h"
+
 #include <GLFW\glfw3.h>
 
-ChunkRenderer *chunkRenderer;
+TerrainGenerator* terrainGenerator;
+ChunkRenderer* chunkRenderer;
+WorldController* worldController;
+
 
 Game::Game()
 {
@@ -15,7 +21,15 @@ Game::Game()
 
 Game::~Game()
 {
+	gameRunning = false;
+	for (auto& thread : chunkLoadThreads)
+	{
+		thread.join();
+	}
+
 	delete chunkRenderer;
+	delete terrainGenerator;
+	delete worldController;
 }
 
 void Game::SetWindow(GLFWwindow* _window)
@@ -28,38 +42,47 @@ void Game::SetCamera(Camera* _camera)
 	this->camera = _camera;
 }
 
+void Game::Update()
+{
+	glfwMakeContextCurrent(window);
+	while (gameRunning)
+	{
+		worldController->Update();
+	}
+}
 
 void Game::Init()
 {
-	ResourceManager::LoadShader("Resources/Shaders/Cube.vs", "Resources/Shaders/Cube.fs", nullptr, "cube");
+	gameRunning = true;
+
+	ResourceManager::LoadShader("Resources/Shaders/Chunk.vs", "Resources/Shaders/Chunk.fs", nullptr, "chunk");
 	ResourceManager::LoadTexture("Resources/Textures/container.jpg", false, "container");
 	ResourceManager::LoadTexture("Resources/Textures/dice_texture.png", false, "dice");
 	ResourceManager::LoadTexture("Resources/Textures/dirt.png", false, "dirt");
+	ResourceManager::LoadTexture("Resources/Textures/TextureAtlas.png", false, "TextureAtlas");
 
-	Cube cube = Cube(ResourceManager::GetShader("cube"));
 	Texture diceTexture = ResourceManager::GetTexture("dice");
 	Texture dirtTexture = ResourceManager::GetTexture("dirt");
 	Texture containerTexture = ResourceManager::GetTexture("container");
 
-	ChunkMeshBuilder chunkBuilder;
-
-	Mesh chunkMesh;
-	chunkBuilder.BuildChunkMesh(&chunkMesh);
-
 	chunkRenderer = new ChunkRenderer();
-	chunkRenderer->AddChunk(new Chunk(chunkMesh));
+	terrainGenerator = new TerrainGenerator();
+	worldController = new WorldController(terrainGenerator, camera, chunkRenderer);
+
+	const int numThreads = 1;
+	for (int i = 0; i < numThreads; i++)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		chunkLoadThreads.emplace_back([&]()
+		{
+			Update();
+		});
+	}
 }
-
-
-void Game::Update(float deltaTime)
-{
-
-}
-
 
 void Game::Render()
 {
-	chunkRenderer->Render(*camera, ResourceManager::GetShader("cube"));
+	chunkRenderer->Render(camera, &ResourceManager::GetShader("chunk"));
 }
 
 void Game::ProcessInput(float deltaTime)

@@ -79,8 +79,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <SDLCheck>true</SDLCheck>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <AdditionalDependencies>assimp-vc140-mt.lib;glfw3.lib;SOIL.lib;opengl32.lib;irrKlang.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -123,38 +124,47 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\OpenGL\Includes\glad\glad.c" />
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Chunk.cpp" />
-    <ClCompile Include="ChunkeRenderer.cpp" />
-    <ClCompile Include="ChunkMeshBuilder.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Model.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Startup.cpp" />
-    <ClCompile Include="TerrainGenerator.cpp" />
-    <ClCompile Include="Texture.cpp" />
+    <None Include="Resources\Shaders\Chunk.fs" />
+    <None Include="Resources\Shaders\Chunk.vs" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\OpenGL\Includes\glad\glad.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Chunk.h" />
-    <ClInclude Include="ChunkMeshBuilder.h" />
-    <ClInclude Include="ChunkRenderer.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Maths\PerlinNoise.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shader.h" />
-    <ClInclude Include="TerrainGenerator.h" />
-    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Texture\Texture.h" />
+    <ClInclude Include="Texture\TextureAtlas.h" />
+    <ClInclude Include="Util\GLUtil.h" />
+    <ClInclude Include="World\Chunk\Chunk.h" />
+    <ClInclude Include="World\Chunk\ChunkMeshBuilder.h" />
+    <ClInclude Include="World\Chunk\ChunkRenderer.h" />
+    <ClInclude Include="World\Constants.h" />
+    <ClInclude Include="World\Terrain\TerrainGenerator.h" />
+    <ClInclude Include="World\WorldController.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Shaders\Cube.fs" />
-    <None Include="Resources\Shaders\Cube.vs" />
+    <ClCompile Include="..\..\..\OpenGL\Includes\glad\glad.c" />
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Maths\PerlinNoise.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Texture\Texture.cpp" />
+    <ClCompile Include="Texture\TextureAtlas.cpp" />
+    <ClCompile Include="Util\GLUtil.cpp" />
+    <ClCompile Include="World\Chunk\Chunk.cpp" />
+    <ClCompile Include="World\Chunk\ChunkMeshBuilder.cpp" />
+    <ClCompile Include="World\Chunk\ChunkRenderer.cpp" />
+    <ClCompile Include="World\Terrain\TerrainGenerator.cpp" />
+    <ClCompile Include="World\WorldController.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

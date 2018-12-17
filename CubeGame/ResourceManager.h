@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 
-#include "Texture.h"
+#include "Texture/Texture.h"
 #include "Shader.h"
 
 

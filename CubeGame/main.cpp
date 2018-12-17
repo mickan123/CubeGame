@@ -7,7 +7,7 @@
 
 int main() 
 {
-	Application app = Application();
+	Application app;
 	app.Start();
 }
 

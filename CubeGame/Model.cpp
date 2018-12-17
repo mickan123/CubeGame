@@ -2,9 +2,9 @@
 #include <iostream>
 #include <glad/glad.h>
 
-Model::Model(Mesh& mesh)
+Model::Model()
 {
-	addData(mesh);
+
 }
 
 Model::~Model()
@@ -13,19 +13,17 @@ Model::~Model()
 }
 
 
-void Model::addData(Mesh& mesh)
+void Model::bindData(Mesh& mesh)
 {
-	if (this->VAO != 0) 
+	if (this->VAO == 0) 
 	{
-		deleteData();
+		this->vertexCount = mesh.vertexPositions.size() / 3;
+
+		glGenVertexArrays(1, &this->VAO);
+		glBindVertexArray(this->VAO);
+		addVBO(3, mesh.vertexPositions);
+		addVBO(2, mesh.textureCoords);
 	}
-
-	this->vertexCount = mesh.vertexPositions.size()/3;
-
-	glGenVertexArrays(1, &this->VAO);
-	glBindVertexArray(this->VAO);
-	addVBO(3, mesh.vertexPositions);
-	addVBO(2, mesh.textureCoords);
 }
 
 

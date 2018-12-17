@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "ResourceManager.h"
+#include "Util/GLUtil.h"
 
 
 Application::Application()
@@ -35,16 +36,14 @@ void Application::Start()
 
 		// Process input
 		game.ProcessInput(deltaTime);
-		game.Update(deltaTime);
-		
+		//game.Update();
+
 		// Render
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		game.Render();
 
-		CheckOpenGLError();
-
-		//std::cout << camera->Position.x << " " << camera->Position.y << " " << camera->Position.z << std::endl;
+		//CheckOpenGLError();
 		glfwSwapBuffers(window);
 	}
 }
@@ -136,13 +135,4 @@ void Application::ScrollCallback(GLFWwindow* window, double xoffset, double yoff
 	app->camera->ProcessMouseScroll(yoffset);
 }
 
-// Prints errors if they have occurred
-void Application::CheckOpenGLError()
-{
-	GLenum err;
-	while ((err = glGetError()) != GL_NO_ERROR) {
-
-		std::cout << "OpenGL error: " << err << std::endl;
-	}
-}
 

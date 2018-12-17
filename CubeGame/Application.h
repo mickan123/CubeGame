@@ -33,5 +33,4 @@ private:
 	static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
 	static void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
 	static void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
-	void CheckOpenGLError();
 };
