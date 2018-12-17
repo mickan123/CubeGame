@@ -37,6 +37,8 @@ void WorldController::Update()
 	int xOffset = camera->Position.x / CHUNK_SIZE;
 	int zOffset = camera->Position.z / CHUNK_SIZE;
 	
+	clock_t start = clock();
+
 	// Add initial centre chunk
 	AddChunk(glm::vec3(xOffset, 0, zOffset));
 
@@ -54,6 +56,10 @@ void WorldController::Update()
 			}
 		}
 	}
+
+	clock_t end = clock();
+	double time = (double)(end - start) / CLOCKS_PER_SEC * 1000.0;
+	std::cout << "Time taken: " << time << std::endl;
 }
 
 void WorldController::AddChunk(glm::vec3 chunkPos)
@@ -72,11 +78,8 @@ Chunk* WorldController::GetChunk(glm::vec3 chunkPos)
 	auto& it = find_if(chunks.begin(), chunks.end(), [&chunkPos](const Chunk* obj) {return obj->chunkPos == chunkPos; });
 	if (it == chunks.end())
 	{
-		clock_t start = clock();
 		Chunk* newChunk = terrainGenerator->GenerateChunk(chunkPos);
-		clock_t end = clock();
-		double time = (double)(end - start) / CLOCKS_PER_SEC * 1000.0;
-		std::cout << "Time taken: " << time << std::endl;
+
 		chunks.push_back(newChunk);
 		return newChunk;
 	}

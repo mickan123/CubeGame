@@ -69,7 +69,7 @@ const float cubeVertices[] = {
 	 0.0f, 1.0f, 1.0f,
 };
 
-Mesh* ChunkMeshBuilder::BuildChunkMesh(uint8_t chunkBlocks[CHUNK_SIZE][CHUNK_SIZE][CHUNK_SIZE])
+Mesh* ChunkMeshBuilder::BuildChunkMesh(int chunkBlocks[CHUNK_SIZE*CHUNK_SIZE*CHUNK_SIZE])
 {
 	Mesh* mesh = new Mesh();
 	for (int i = 0; i < CHUNK_SIZE; i++)
@@ -78,11 +78,12 @@ Mesh* ChunkMeshBuilder::BuildChunkMesh(uint8_t chunkBlocks[CHUNK_SIZE][CHUNK_SIZ
 		{
 			for (int w = 0; w < CHUNK_SIZE; w++)
 			{
-				if (chunkBlocks[i][j][w] != AIR_BLOCK)
+				if (chunkBlocks[i*CHUNK_SIZE*CHUNK_SIZE +j*CHUNK_SIZE + w] != AIR_BLOCK)
 				{
 					glm::vec3 cubePos = { i, j, w };
-					std::vector<uint8_t> adjacentBlocktypes = GetAdjacentBlockTypes(cubePos, chunkBlocks);
-					AddCube(mesh, cubePos, chunkBlocks[i][j][w], adjacentBlocktypes);
+					std::vector<int> adjacentBlocktypes = GetAdjacentBlockTypes(cubePos, chunkBlocks);
+					int blockType = chunkBlocks[i*CHUNK_SIZE*CHUNK_SIZE + j*CHUNK_SIZE + w];
+					AddCube(mesh, cubePos, blockType, adjacentBlocktypes);
 				}
 			}
 		}
@@ -91,26 +92,27 @@ Mesh* ChunkMeshBuilder::BuildChunkMesh(uint8_t chunkBlocks[CHUNK_SIZE][CHUNK_SIZ
 }
 
 
-std::vector<uint8_t> ChunkMeshBuilder::GetAdjacentBlockTypes(glm::vec3 pos, uint8_t chunkBlocks[CHUNK_SIZE][CHUNK_SIZE][CHUNK_SIZE])
+std::vector<int> ChunkMeshBuilder::GetAdjacentBlockTypes(glm::vec3 pos, int chunkBlocks[CHUNK_SIZE*CHUNK_SIZE*CHUNK_SIZE])
 {
-	std::vector<uint8_t> adjacentBlockTypes;
+	std::vector<int> adjacentBlockTypes;
 	for (glm::vec3 offset : dirOffset)
 	{
 		glm::vec3 adjacentBlockPos = pos + offset;
 		if (BlockOutOfBounds(adjacentBlockPos.x, adjacentBlockPos.y, adjacentBlockPos.z))
 		{
-			adjacentBlockTypes.push_back((uint8_t)0);
+			adjacentBlockTypes.push_back(0);
 		}
 		else
 		{
-			uint8_t adjacentBlockType = chunkBlocks[(int)adjacentBlockPos.x][(int)adjacentBlockPos.y][(int)adjacentBlockPos.z];
+			int index = (int)adjacentBlockPos.x*CHUNK_SIZE*CHUNK_SIZE + (int)adjacentBlockPos.y*CHUNK_SIZE + (int)adjacentBlockPos.z;
+			int adjacentBlockType = chunkBlocks[index];
 			adjacentBlockTypes.push_back(adjacentBlockType);
 		}
 	}
 	return adjacentBlockTypes;
 }
 
-void const ChunkMeshBuilder::AddCube(Mesh* mesh, glm::vec3 pos, uint8_t blockType, std::vector<uint8_t> adjacentBlockTypes)
+void const ChunkMeshBuilder::AddCube(Mesh* mesh, glm::vec3 pos, int blockType, std::vector<int> adjacentBlockTypes)
 {
 	// 6 Faces per cube
 	for (int i = 0; i < 6; i++)

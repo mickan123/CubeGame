@@ -21,9 +21,9 @@ class ChunkMeshBuilder
 {
 public:
 	ChunkMeshBuilder();
-	Mesh* BuildChunkMesh(uint8_t chunkBlocks[CHUNK_SIZE][CHUNK_SIZE][CHUNK_SIZE]);
+	Mesh* BuildChunkMesh(int chunkBlocks[CHUNK_SIZE*CHUNK_SIZE*CHUNK_SIZE]);
 private:
-	void const AddCube(Mesh* mesh, glm::vec3 pos, uint8_t blockType, std::vector<uint8_t> adjacentBlockTypes);
-	std::vector<uint8_t> GetAdjacentBlockTypes(glm::vec3 pos, uint8_t chunkBlocks[CHUNK_SIZE][CHUNK_SIZE][CHUNK_SIZE]);
+	void const AddCube(Mesh* mesh, glm::vec3 pos, int blockType, std::vector<int> adjacentBlockTypes);
+	std::vector<int> GetAdjacentBlockTypes(glm::vec3 pos, int chunkBlocks[CHUNK_SIZE*CHUNK_SIZE*CHUNK_SIZE]);
 	TextureAtlas texAtlas;
 };

@@ -29,7 +29,7 @@ TextureAtlas::TextureAtlas()
 	}
 }
 
-std::vector<float> TextureAtlas::GetTextureFace(uint8_t blockType, int face)
+std::vector<float> TextureAtlas::GetTextureFace(int blockType, int face)
 {
 	float texWidth = 1 / AtlasWidth;
 	float texHeight = 1 / AtlasHeight;
@@ -51,7 +51,7 @@ std::vector<float> TextureAtlas::GetTextureFace(uint8_t blockType, int face)
 	return texCoords;
 }
 
-std::vector<float> TextureAtlas::GetTexture(uint8_t blockType)
+std::vector<float> TextureAtlas::GetTexture(int blockType)
 {
 	return textureCoords[blockType];
 }

@@ -9,8 +9,8 @@ class TextureAtlas
 {
 public:
 	TextureAtlas();
-	std::vector<float> GetTextureFace(uint8_t blockType, int face);
-	std::vector<float> GetTexture(uint8_t blockType);
+	std::vector<float> GetTextureFace(int blockType, int face);
+	std::vector<float> GetTexture(int blockType);
 
 private:
 

@@ -11,7 +11,7 @@ TerrainGenerator::TerrainGenerator() : chunkMeshBuilder()
 
 Chunk* TerrainGenerator::GenerateChunk(glm::vec3 chunkPos)
 {
-	uint8_t chunkBlocks[CHUNK_SIZE][CHUNK_SIZE][CHUNK_SIZE];
+	int chunkBlocks[CHUNK_SIZE*CHUNK_SIZE*CHUNK_SIZE];
 	for (int x = 0; x < CHUNK_SIZE; x++)
 	{
 		for (int z = 0; z < CHUNK_SIZE; z++)
@@ -22,11 +22,11 @@ Chunk* TerrainGenerator::GenerateChunk(glm::vec3 chunkPos)
 			{
 				if (y == height)
 				{
-					chunkBlocks[x][y][z] = GRASS_BLOCK;
+					chunkBlocks[x*CHUNK_SIZE*CHUNK_SIZE + y*CHUNK_SIZE + z] = GRASS_BLOCK;
 				}
 				else
 				{
-					chunkBlocks[x][y][z] = (y > height) ? AIR_BLOCK : DIRT_BLOCK;
+					chunkBlocks[x*CHUNK_SIZE*CHUNK_SIZE + y*CHUNK_SIZE + z] = (y > height) ? AIR_BLOCK : DIRT_BLOCK;
 				}
 			}
 		}
