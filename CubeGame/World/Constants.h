@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-const unsigned int CHUNK_SIZE = 16;
+const unsigned int CHUNK_SIZE = 32;
 
 const int AIR_BLOCK = 0;
 const int DIRT_BLOCK = 1;

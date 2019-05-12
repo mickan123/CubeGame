@@ -32,6 +32,8 @@ const std::vector<glm::vec2> offsetDir =
 };
 
 
+const bool profile = false;
+
 void WorldController::Update()
 {
 	int xOffset = camera->Position.x / CHUNK_SIZE;
@@ -57,9 +59,12 @@ void WorldController::Update()
 		}
 	}
 
-	clock_t end = clock();
-	double time = (double)(end - start) / CLOCKS_PER_SEC * 1000.0;
-	std::cout << "Time taken: " << time << std::endl;
+	if (profile) 
+	{
+		clock_t end = clock();
+		double time = (double)(end - start) / CLOCKS_PER_SEC * 1000.0;
+		std::cout << "Time taken: " << time << std::endl;
+	}
 }
 
 void WorldController::AddChunk(glm::vec3 chunkPos)
